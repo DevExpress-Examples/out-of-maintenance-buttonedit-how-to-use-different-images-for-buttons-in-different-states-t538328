@@ -60,9 +60,9 @@
             // imageCollection1
             // 
             this.imageCollection1.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection1.ImageStream")));
-            this.imageCollection1.Images.SetKeyName(0, "pressed_btn0");
-            this.imageCollection1.InsertGalleryImage("apply_32x32.png", "images/actions/apply_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/apply_32x32.png"), 1);
+            this.imageCollection1.Images.SetKeyName(0, "add_32x32.png");
             this.imageCollection1.Images.SetKeyName(1, "apply_32x32.png");
+            this.imageCollection1.Images.SetKeyName(2, "cancel_32x32.png");
             // 
             // flowLayoutPanel1
             // 
@@ -82,14 +82,14 @@
             this.simpleButton1.Text = "Set new icon";
             this.simpleButton1.Click += new System.EventHandler(this.OnChangeImageButtonClick);
             // 
-            // Form1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(657, 447);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Main";
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
