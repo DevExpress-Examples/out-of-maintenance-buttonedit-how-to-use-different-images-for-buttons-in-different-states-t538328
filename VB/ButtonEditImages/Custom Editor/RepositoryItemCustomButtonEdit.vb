@@ -1,30 +1,26 @@
-﻿Imports System
-Imports System.Collections.Generic
+Imports System
 Imports System.Drawing
-Imports System.Linq
 Imports DevExpress.XtraEditors.Registrator
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.Utils
 
 Namespace ButtonEditImages
-    <UserRepositoryItem("RegisterCustomButtonEdit")> _
+
+    <UserRepositoryItem("RegisterCustomButtonEdit")>
     Public Class RepositoryItemCustomButtonEdit
         Inherits RepositoryItemButtonEdit
 
         Private _imageCollection As ImageCollection
 
-        Public Property ImageCollection() As ImageCollection
+        Public Property ImageCollection As ImageCollection
             Get
                 Return _imageCollection
             End Get
+
             Set(ByVal value As ImageCollection)
-                If _imageCollection IsNot Nothing Then
-                    RemoveHandler _imageCollection.Changed, AddressOf _imageCollection_Changed
-                End If
+                If _imageCollection IsNot Nothing Then RemoveHandler _imageCollection.Changed, AddressOf _imageCollection_Changed
                 _imageCollection = value
-                If _imageCollection IsNot Nothing Then
-                    AddHandler _imageCollection.Changed, AddressOf _imageCollection_Changed
-                End If
+                If _imageCollection IsNot Nothing Then AddHandler _imageCollection.Changed, AddressOf _imageCollection_Changed
                 OnPropertiesChanged()
             End Set
         End Property
@@ -34,7 +30,7 @@ Namespace ButtonEditImages
         End Sub
 
         Shared Sub New()
-            RegisterCustomButtonEdit()
+            Call RegisterCustomButtonEdit()
         End Sub
 
         Public Const CustomEditName As String = "CustomButtonEdit"
@@ -43,7 +39,7 @@ Namespace ButtonEditImages
             ImageCollection = New ImageCollection()
         End Sub
 
-        Public Overrides ReadOnly Property EditorTypeName() As String
+        Public Overrides ReadOnly Property EditorTypeName As String
             Get
                 Return CustomEditName
             End Get
@@ -51,7 +47,7 @@ Namespace ButtonEditImages
 
         Public Shared Sub RegisterCustomButtonEdit()
             Dim img As Image = Nothing
-            EditorRegistrationInfo.Default.Editors.Add(New EditorClassInfo(CustomEditName, GetType(CustomButtonEdit), GetType(RepositoryItemCustomButtonEdit), GetType(CustomButtonEditViewInfo), New CustomButtonEditPainter(), True, img))
+            Call EditorRegistrationInfo.Default.Editors.Add(New EditorClassInfo(CustomEditName, GetType(CustomButtonEdit), GetType(RepositoryItemCustomButtonEdit), GetType(CustomButtonEditViewInfo), New CustomButtonEditPainter(), True, img))
         End Sub
 
         Public Overrides Sub Assign(ByVal item As RepositoryItem)
@@ -59,18 +55,16 @@ Namespace ButtonEditImages
             Try
                 MyBase.Assign(item)
                 Dim source As RepositoryItemCustomButtonEdit = TryCast(item, RepositoryItemCustomButtonEdit)
-                If source Is Nothing Then
-                    Return
-                End If
-                ImageCollection = source.ImageCollection
+                If source Is Nothing Then Return
                 '
+                ImageCollection = source.ImageCollection
             Finally
                 EndUpdate()
             End Try
         End Sub
-          Friend Shadows Function GetAllowGlyphSkinning() As Boolean
-              Return MyBase.GetAllowGlyphSkinning()
-          End Function
-    End Class
 
+        Friend Overloads Function GetAllowGlyphSkinning() As Boolean
+            Return MyBase.GetAllowGlyphSkinning()
+        End Function
+    End Class
 End Namespace
